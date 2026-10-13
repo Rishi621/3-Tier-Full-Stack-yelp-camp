@@ -15,6 +15,7 @@ module.exports.register = async (req, res, next) => {
             res.redirect('/campgrounds');
         })
     } catch (e) {
+	console.error('Registration failed:', e.stack || e);
         req.flash('error', e.message);
         res.redirect('register');
     }
