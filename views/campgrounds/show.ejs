@@ -116,7 +116,7 @@
     </div>
 
     <script>
-        const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+        const mapToken = <%- JSON.stringify(mapToken) %>;
         const campground = <%- JSON.stringify(campground) %> // importance note: vscode formater add space at this line of code is not valid, "/</%/-"", not "/</%/ /-"
     </script>
 
