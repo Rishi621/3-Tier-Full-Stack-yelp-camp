@@ -9,7 +9,6 @@ if (!mapBoxToken) {
 const geocoder = mbxGeocoding({
     accessToken: mapBoxToken
 });
-const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary } = require("../cloudinary");
 const ExpressError = require('../utils/ExpressError');
 
