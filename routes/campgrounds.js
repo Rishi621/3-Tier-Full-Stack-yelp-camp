@@ -9,9 +9,24 @@ const upload = multer({ storage });
 
 const Campground = require('../models/campground');
 
+    
 router.route('/')
     .get(catchAsync(campgrounds.index))
-    .post(isLoggedIn, upload.array('image'), validateCampground, catchAsync(campgrounds.createCampground))
+    .post(
+        isLoggedIn,
+        (req, res, next) => {
+            upload.array('image')(req, res, (err) => {
+                if (err) {
+                    console.error('IMAGE UPLOAD ERROR:', err);
+                    return next(err);
+                }
+                next();
+            });
+        },
+        validateCampground,
+        catchAsync(campgrounds.createCampground)
+    );
+
     // image is a field specified in form
     // similarly , we have upload.single() for upload one img
 
