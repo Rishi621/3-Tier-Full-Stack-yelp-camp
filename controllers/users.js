@@ -32,19 +32,15 @@ module.exports.login = (req, res) => {
     res.redirect(redirectUrl);
 }
 
-module.exports.logout = (req, res) => {
-    console.log("activvate logout");
-    req.logout();
-    // req.session.destroy();
-    req.flash('success', "Goodbye!");
-    res.redirect('/campgrounds');
-    // req.logout(function (err) {
-    //     if (err) {
-    //         return next(err);
-    //     }
-    //     req.flash('success', 'Goodbye!');
-    //     res.redirect('/campgrounds');
-    // });
+module.exports.logout = (req, res, next) => {
+    console.log("activate logout");
+    req.logout(function (err) {
+        if (err) {
+            return next(err);
+        }
 
-    console.log("activvate logout end");
-}
+        req.flash('success', 'Goodbye!');
+        res.redirect('/campgrounds');
+    });
+};
+
